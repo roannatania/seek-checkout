@@ -19,17 +19,16 @@ export const cartItemsList = css`
 `
 
 export const cartItems = css`
-  display: flex;
-  flex-flow: column;
-  justify-content: center;
-  align-items: flex-start;
+  display: grid;
+  grid-template-columns: 1fr 50px;
+  grid-column-gap: 12px;
   width: 100%;
-  margin: 0 0 6px;
-  padding: 0 0 6px;
+  margin: 0 0 10px;
+  padding: 0 0 10px;
   border-bottom: 1px solid ${colors.lightGreyColor};
 
   &:first-of-type {
-    padding-top: 6px;
+    padding-top: 10px;
   }
 
   &:last-of-type {
@@ -39,9 +38,12 @@ export const cartItems = css`
   }
 
   @media (min-width: ${breakpoints.laptop}) {
-    display: grid;
-    grid-template-columns: 1fr 50px;
-    grid-column-gap: 12px;
+    margin-bottom: 6px;
+    padding-bottom: 6px;
+
+    &:first-of-type {
+      padding-top: 6px;
+    }
   }
 `
 
@@ -53,15 +55,8 @@ export const cartItemNameWrapper = css`
 `
 
 export const quantityWrapper = css`
-  display: flex;
-  flex-flow: row nowrap;
-  justify-content: flex-start;
-  align-items: centerr;
   width: 100%;
-
-  @media (min-width: ${breakpoints.laptop}) {
-    ${cartItemNameWrapper}
-  }
+  ${cartItemNameWrapper}
 `
 
 export const cartItemName = css`
@@ -80,15 +75,15 @@ export const quantityLabel = css`
   display: block;
   width: 100%;
   text-align: center;
+  margin: 0 0 2px;
   color: ${colors.darkGreyColor};
-  margin: 0 0 4px;
 `
 
 export const cartItemQuantity = css`
   ${defaultFontStyle}
   color: ${colors.blackColor};
-  text-align: center;
   display: block;
+  text-align: center;
   width: 100%;
 `
 
