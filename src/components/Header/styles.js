@@ -27,11 +27,12 @@ export const headerLogoLink = css`
   display: block;
   cursor: pointer;
   text-decoration: none;
-  max-width: 129px;
+  max-width: 130px;
   margin-right: 8px;
 
 
-  @media (min-width: ${breakpoints.tablet768}) {
+  @media (min-width: ${breakpoints.laptop}) {
+    max-width: 180px;
     margin-right: 20px;
   }
 `
@@ -47,7 +48,7 @@ export const headerText = css`
   text-align: right;
   color: ${darkGreyColor};
 
-  @media (min-width: ${breakpoints.tablet768}) {
+  @media (min-width: ${breakpoints.laptop}) {
     ${size24FontStyle}
   }
 `

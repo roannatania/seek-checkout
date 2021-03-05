@@ -88,11 +88,14 @@ export const cartItemQuantity = css`
 `
 
 export const totalPurchaseWrapper = css`
-  margin-top: 24px;
-  padding-top: 24px;
+  margin-top: 32px;
   display: grid;
   grid-template-columns: 80px 1fr;
   grid-column-gap: 12px;
+
+  @media (min-width: ${breakpoints.laptop}) {
+    margin-top: 48px;
+  }
 `
 
 const totalSectionText = css`

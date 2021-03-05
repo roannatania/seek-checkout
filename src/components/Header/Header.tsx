@@ -14,7 +14,7 @@ const Header = (props: HeaderProps): JSX.Element => {
     <header className={styles.header}>
       <div className={styles.headerInner}>
         <div className={styles.headerContent}>
-          <a href="/" className={styles.headerLogoLink}><img src={logo} alt="SEEK" /></a>
+          <a href="/" className={styles.headerLogoLink}><img src={logo} alt="SEEK" className={styles.headerLogo} /></a>
           <div className={styles.headerText}>
             Welcome
             {name && `, ${name}`}
