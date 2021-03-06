@@ -79,7 +79,7 @@ const App = (): JSX.Element => {
 
   useEffect(() => {
     checkout?.setPricingRules(pricingRules)
-  }, [pricingRules])
+  }, [pricingRules, checkout])
 
   return (
     <div className={styles.appMainWrapper}>

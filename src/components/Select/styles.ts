@@ -20,7 +20,7 @@ export const selectInputInnerWrapper = css`
   top: 0;
 `
 
-export const inputLabel = (color = colors.blackColor) => css`
+export const inputLabel = (color = colors.blackColor):string => css`
   ${fontStyle}
   color: ${color};
   display: block;

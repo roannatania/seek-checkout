@@ -10,3 +10,4 @@
 1. Assuming you have installed everything and is running the app, open new terminal
 2. Go to the project folder
 3. `npm test` in the terminal
+4. Type `a` in the terminal and then click `ENTER` to run all the tests

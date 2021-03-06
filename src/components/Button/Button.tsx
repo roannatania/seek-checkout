@@ -6,6 +6,7 @@ import { BUTTON_VARIANT } from '../../constants/components'
 import * as styles from './styles'
 
 type ButtonProps = {
+  id?: string
   variant?: BUTTON_VARIANT.pink | BUTTON_VARIANT.blue
   type?: 'button' | 'submit' | 'reset'
   children: JSX.Element | string
@@ -14,10 +15,27 @@ type ButtonProps = {
 }
 
 const Button = (props: ButtonProps): JSX.Element => {
-  const { variant = BUTTON_VARIANT.pink, type = 'button', children, onClick, className, ...rest } = props
+  const {
+    id,
+    variant = BUTTON_VARIANT.blue,
+    type = 'button',
+    children,
+    onClick,
+    className,
+    ...rest
+  } = props
 
   return (
-    <button className={cx(styles.button(variant), className)} type={type} onClick={onClick} {...rest} >
+    <button
+      id={id}
+      data-testid={id}
+      className={cx(styles.buttonDefault, {
+        [styles.buttonVariantPink]: variant === BUTTON_VARIANT.pink
+      }, className)}
+      type={type}
+      onClick={onClick}
+      {...rest}
+    >
       {children}
     </button>
   )

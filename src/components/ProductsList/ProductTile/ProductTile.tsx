@@ -1,6 +1,5 @@
 import React from 'react'
 
-import { BUTTON_VARIANT } from '../../../constants/components'
 import { ProductDetails } from '../../../objects/checkout'
 import Button from '../../Button'
 
@@ -28,7 +27,7 @@ const ProductTile = (props: ProductTileProps):JSX.Element => {
           </div>
           <div className={styles.contentWrapper}>
             {price > 0 && <p className={styles.productPrice}>${price}</p>}
-            <Button onClick={handleAddToCart} variant={BUTTON_VARIANT.blue}>Add to Cart</Button>
+            <Button id={`${id}-add-to-cart-btn`} onClick={handleAddToCart}>Add to Cart</Button>
           </div>
       </div>
     </article>

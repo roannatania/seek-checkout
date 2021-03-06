@@ -35,15 +35,23 @@ const Select = (props: SelectFieldProps): JSX.Element => {
             [styles.selectInputIsFilled]: parsedValue(value).trim().length > 0,
             [styles.selectInputDefault]: parsedValue(value).trim().length <= 0,
           })}
+          data-testid={`${id}-select`}
           {...rest}
         >
           {options.map((opt: DropdownOption, index: number) => (
-            <option disabled={parsedValue(opt.value).trim().length <= 0} className={styles.dropdownOption} key={`option-${index + 1}`} value={opt.value}>
+            <option
+              value={opt.value}
+              disabled={parsedValue(opt.value).trim().length <= 0}
+              className={styles.dropdownOption} key={`option-${index + 1}`}
+              data-testid={`${id}-option`}
+            >
               {opt.label}
             </option>
           ))}
         </select>
-        <span className={styles.iconLabel}><FontAwesomeIcon icon="chevron-down" /></span>
+        <span className={styles.iconLabel}>
+          <FontAwesomeIcon icon="chevron-down" />
+        </span>
       </div>
     </div>
   )

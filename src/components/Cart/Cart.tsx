@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react'
 import { cx } from '@emotion/css'
 
-import products from '../../data/products'
+import { getProductname } from '../../helpers/checkout'
 
 import * as styles from './styles'
 
@@ -24,28 +24,32 @@ const Cart = (props: CartProps): JSX.Element => {
 
   const getItemQuantity = (item: string):number => items.filter(currentItem => currentItem === item).length || 0
 
-  const getProductname = (item: string):string => products.find(product => product?.id === item)?.name || item
-
   if (!items.length && total <= 0) return <></>
 
   return (
-    <div className={cx(styles.cartWrapper, className)}>
+    <div data-testid="cart" className={cx(styles.cartWrapper, className)}>
       <ul className={styles.cartItemsList}>
-        {uniqueItems.map((item: string) => (
-          <li key={item} className={styles.cartItems}>
-            <div className={styles.cartItemNameWrapper}>
-              <p className={styles.cartItemName}>{getProductname(item)}</p>
-            </div>
-            <div className={styles.quantityWrapper}>
-              <span className={styles.quantityLabel}>Qty</span>
-              <span className={styles.cartItemQuantity}>{getItemQuantity(item)}</span>
-            </div>
-          </li>
-        ))}
+        {uniqueItems.map((item: string) => {
+          const name = getProductname(item) || ''
+
+          if (!name) return null
+
+          return (
+            <li key={item} className={styles.cartItems}>
+              <div className={styles.cartItemNameWrapper}>
+                <p data-testid={`${item}-cart-list-item`} className={styles.cartItemName}>{name}</p>
+              </div>
+              <div className={styles.quantityWrapper}>
+                <span className={styles.quantityLabel}>Qty</span>
+                <span data-testid={`${item}-cart-qty`} className={styles.cartItemQuantity}>{getItemQuantity(item)}</span>
+              </div>
+            </li>
+          )
+        })}
       </ul>
       <div className={styles.totalPurchaseWrapper}>
         <span className={styles.totalLabel}>Total</span>
-        <span className={styles.totalAmount}>${total}</span>
+        <span data-testid="cart-total" className={styles.totalAmount}>${total}</span>
       </div>
     </div>
   )

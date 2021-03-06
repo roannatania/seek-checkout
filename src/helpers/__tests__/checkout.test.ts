@@ -1,4 +1,4 @@
-import { getCustomerPricingRule } from '../checkout'
+import { getCustomerPricingRule, getProductname } from '../checkout'
 import { PRICING_RULE_TYPE, ADS_TYPE } from '../../constants/checkout'
 
 describe('/helpers/checkout', () => {
@@ -47,6 +47,16 @@ describe('/helpers/checkout', () => {
           y: 4,
         },
       }])
+    })
+  })
+
+  describe('getProductName', () => {
+    it('should return correct name if id match to a product id in ../../data/products', () => {
+      expect(getProductname('standout')).toEqual('Stand out Ad')
+    })
+
+    it('should return empty string if no matched product id is found', () => {
+      expect(getProductname('random')).toEqual('')
     })
   })
 })
