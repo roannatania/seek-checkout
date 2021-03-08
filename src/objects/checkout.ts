@@ -27,10 +27,5 @@ export type ProductDetails = {
 export type CustomerDetails = {
   id: string
   name: string
-}
-
-export type PrivilegedCustomersList = Array<{
-  id: string,
-  name: string,
   pricingRules?: PricingRulesData
-}>
+}
