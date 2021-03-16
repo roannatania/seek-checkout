@@ -1,6 +1,7 @@
 enum PRICING_RULE_TYPE {
   specialPrice = 'special price',
   xForY = 'x for y',
+  conditionalSpecialPrice = 'conditional special price'
 }
 
 enum ADS_TYPE {

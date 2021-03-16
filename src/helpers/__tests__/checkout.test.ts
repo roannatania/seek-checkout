@@ -46,6 +46,13 @@ describe('/helpers/checkout', () => {
           x: 5,
           y: 4,
         },
+      }, {
+        adsType: ADS_TYPE.classic,
+        type: PRICING_RULE_TYPE.specialPrice,
+        params: {
+          price: 249.99,
+          minOrder: 3,
+        },
       }])
     })
   })

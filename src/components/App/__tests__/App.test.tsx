@@ -130,9 +130,52 @@ describe('<App />', () => {
         fireEvent.click(getByTestId('premium-add-to-cart-btn'))
         fireEvent.click(getByTestId('premium-add-to-cart-btn'))
         fireEvent.click(getByTestId('classic-add-to-cart-btn'))
+        fireEvent.click(getByTestId('classic-add-to-cart-btn'))
+        fireEvent.click(getByTestId('classic-add-to-cart-btn'))
 
-        expect(getByTestId('cart-total')).toHaveTextContent('$2987.91')
+        expect(getByTestId('cart-total')).toHaveTextContent('$3467.89')
       })
+
+      it('should display correct total amount for JORA', () => {
+        const { getByTestId } = render(<App />)
+
+        fireEvent.change(getByTestId('userName-select'), { target: { value: 'REC006' } })
+
+        fireEvent.click(getByTestId('premium-add-to-cart-btn'))
+        fireEvent.click(getByTestId('premium-add-to-cart-btn'))
+        fireEvent.click(getByTestId('premium-add-to-cart-btn'))
+        fireEvent.click(getByTestId('premium-add-to-cart-btn'))
+        fireEvent.click(getByTestId('standout-add-to-cart-btn'))
+        fireEvent.click(getByTestId('classic-add-to-cart-btn'))
+
+        expect(getByTestId('cart-total')).toHaveTextContent('$2112.94')
+      })
+    })
+  })
+
+  describe('Total Discount Display', () => {
+    it('should display total discount for privileged customers', () => {
+      const { getByTestId } = render(<App />)
+
+      fireEvent.change(getByTestId('userName-select'), { target: { value: 'REC002' } })
+
+      fireEvent.click(getByTestId('standout-add-to-cart-btn'))
+      fireEvent.click(getByTestId('standout-add-to-cart-btn'))
+      fireEvent.click(getByTestId('standout-add-to-cart-btn'))
+      fireEvent.click(getByTestId('premium-add-to-cart-btn'))
+
+      expect(getByTestId('cart-total-discount')).toHaveTextContent('$69')
+    })
+
+    it('should not display total discount for default customers', () => {
+      const { queryByTestId, getByTestId } = render(<App />)
+
+      fireEvent.click(getByTestId('standout-add-to-cart-btn'))
+      fireEvent.click(getByTestId('standout-add-to-cart-btn'))
+      fireEvent.click(getByTestId('standout-add-to-cart-btn'))
+      fireEvent.click(getByTestId('premium-add-to-cart-btn'))
+
+      expect(queryByTestId('cart-total-discount')).not.toBeInTheDocument()
     })
   })
 })

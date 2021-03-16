@@ -2,6 +2,7 @@ import { PRICING_RULE_TYPE, ADS_TYPE } from '../constants/checkout'
 import {
   SpecialPriceParam,
   XYParam,
+  ConditionalSpecialPriceParam,
   RuleParams,
   PricingRulesData
 } from '../objects/checkout'
@@ -40,7 +41,11 @@ export class Checkout {
     const adsPrice = adsType ? this._getAdsPrice(adsType) : 0
     const lowerCasedType = type?.toLowerCase()
 
-    if (lowerCasedType === PRICING_RULE_TYPE.specialPrice) return totalAds * ((params as SpecialPriceParam)?.price || adsPrice)
+    if (lowerCasedType === PRICING_RULE_TYPE.specialPrice) {
+      const { price = 0, minOrder = 0} = params as SpecialPriceParam
+
+      if (totalAds >= minOrder) return totalAds * price // price is special price in the rule
+    }
 
     if (lowerCasedType === PRICING_RULE_TYPE.xForY) {
       const { x = 0, y = 0 } = params as XYParam
@@ -67,6 +72,17 @@ export class Checkout {
 
   getCart():Array<string> {
     return this.cartItems
+  }
+
+  subTotal(): number {
+    let subTotal = 0
+    const cartItems = this.cartItems
+
+    cartItems.forEach((cartItem: string) => {
+      subTotal += this._getAdsPrice(cartItem)
+    })
+
+    return Math.round(subTotal * 100) / 100
   }
 
   total(): number {

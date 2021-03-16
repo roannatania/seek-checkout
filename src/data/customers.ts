@@ -37,6 +37,13 @@ const customers = [{
       x: 5,
       y: 4,
     },
+  }, {
+    adsType: ADS_TYPE.classic,
+    type: PRICING_RULE_TYPE.specialPrice,
+    params: {
+      minOrder: 3,
+      price: 249.99
+    }
   }],
 }, {
   id: 'REC004',
@@ -44,6 +51,17 @@ const customers = [{
 }, {
   id: 'REC005',
   name: 'The Kettle Black'
+}, {
+  id: 'REC006',
+  name: 'JORA',
+  pricingRules: [{
+    adsType: ADS_TYPE.premium,
+    type: PRICING_RULE_TYPE.specialPrice,
+    params: {
+      minOrder: 4,
+      price: 379.99
+    }
+  }]
 }]
 
 export default customers

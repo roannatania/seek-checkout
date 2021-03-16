@@ -1,6 +1,6 @@
 import { css } from '@emotion/css'
 
-import { defaultFontStyle, size12FontStyle, size24FontStyle } from '../../styles/typography'
+import { defaultFontStyle, size12FontStyle, size18FontStyle, size24FontStyle } from '../../styles/typography'
 import * as colors from '../../styles/colors'
 import * as breakpoints from '../../styles/breakpoints'
 
@@ -87,14 +87,44 @@ export const cartItemQuantity = css`
   width: 100%;
 `
 
-export const totalPurchaseWrapper = css`
+export const totalSavingWrapper = css`
   margin-top: 32px;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  grid-column-gap: 12px;
+
+  @media (min-width: ${breakpoints.laptop}) {
+    margin-top: 48px;
+  }
+`
+
+const totalSavingText = css`
+  ${size18FontStyle}
+  font-weight: bold;
+  display: block;
+  width: 100%;
+`
+
+export const totalSavingLabel = css`
+  ${totalSavingText}
+  text-align: left;
+  color: ${colors.primaryBlueColor}
+`
+
+export const totalSavingAmount = css`
+  ${totalSavingText}
+  text-align: right;
+  color: ${colors.blackColor};
+`
+
+export const totalPurchaseWrapper = css`
+  margin-top: 8px;
   display: grid;
   grid-template-columns: 80px 1fr;
   grid-column-gap: 12px;
 
   @media (min-width: ${breakpoints.laptop}) {
-    margin-top: 48px;
+    margin-top: 12px;
   }
 `
 
@@ -108,7 +138,7 @@ const totalSectionText = css`
 export const totalLabel = css`
   ${totalSectionText}
   text-align: left;
-  color: ${colors.primaryBlueColor}
+  color: ${colors.primaryPinkColor}
 `
 
 export const totalAmount = css`

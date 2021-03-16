@@ -8,11 +8,12 @@ import * as styles from './styles'
 type CartProps = {
   items: Array<string>
   total: number
+  totalDiscount?: number
   className?: string
 }
 
 const Cart = (props: CartProps): JSX.Element => {
-  const { items = [], total = 0, className} = props
+  const { items = [], total = 0, totalDiscount = 0, className} = props
 
   const [uniqueItems, setUniqueItems] = useState<Array<string>>([])
 
@@ -47,6 +48,12 @@ const Cart = (props: CartProps): JSX.Element => {
           )
         })}
       </ul>
+      {totalDiscount > 0 && (
+        <div className={styles.totalSavingWrapper}>
+          <span className={styles.totalSavingLabel}>You&apos;re saving a total of:</span>
+          <span data-testid="cart-total-discount" className={styles.totalSavingAmount}>${totalDiscount}</span>
+        </div>
+      )}
       <div className={styles.totalPurchaseWrapper}>
         <span className={styles.totalLabel}>Total</span>
         <span data-testid="cart-total" className={styles.totalAmount}>${total}</span>

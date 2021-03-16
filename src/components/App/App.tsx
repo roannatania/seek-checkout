@@ -23,7 +23,9 @@ const App = (): JSX.Element => {
   const [pricingRules, setPricingRules] = useState<PricingRulesData>([])
   const [checkout, setCheckout] = useState<null | Checkout>(null)
   const [cart, setCart] = useState<Array<string>>([])
+  const [subTotal, setSubTotal] = useState(0)
   const [total, setTotal] = useState(0)
+  const [totalDiscount, setTotalDiscount] = useState(0)
 
   const resetBag = () => {
     setTotal(0)
@@ -67,6 +69,7 @@ const App = (): JSX.Element => {
 
     setCart(userCart)
     setTotal(totalPurchase)
+    setSubTotal(checkout?.subTotal() || 0)
   }
 
   useEffect(() => {
@@ -80,6 +83,10 @@ const App = (): JSX.Element => {
   useEffect(() => {
     checkout?.setPricingRules(pricingRules)
   }, [pricingRules, checkout])
+
+  useEffect(() => {
+    setTotalDiscount(subTotal - total)
+  }, [total, subTotal])
 
   return (
     <div className={styles.appMainWrapper}>
@@ -100,6 +107,7 @@ const App = (): JSX.Element => {
           <Cart
             items={cart}
             total={total}
+            totalDiscount={totalDiscount}
             className={styles.cart}
           />
 

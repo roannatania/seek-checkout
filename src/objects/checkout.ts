@@ -2,6 +2,7 @@ import { PRICING_RULE_TYPE, ADS_TYPE } from '../constants/checkout'
 
 export type SpecialPriceParam = {
   price: number
+  minOrder?: number
 }
 
 export type XYParam = {
@@ -9,7 +10,12 @@ export type XYParam = {
   y: number
 }
 
-export type RuleParams = XYParam | SpecialPriceParam
+export type ConditionalSpecialPriceParam = {
+  price: number
+  minOrder: number
+}
+
+export type RuleParams = XYParam | SpecialPriceParam | ConditionalSpecialPriceParam
 
 export type PricingRulesData = Array<{
   adsType: ADS_TYPE

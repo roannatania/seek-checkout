@@ -13,6 +13,21 @@ describe('/services/checkout', () => {
     })
   })
 
+  describe('subTotal', () => {
+    it('should calculate total purchase without any discounts applied', () => {
+      const axilPricingRule = getCustomerPricingRule('REC002')
+
+      const checkout = new Checkout(axilPricingRule)
+
+      checkout.add('standout')
+      checkout.add('standout')
+      checkout.add('standout')
+      checkout.add('premium')
+
+      expect(checkout.subTotal()).toEqual(1363.96)
+    })
+  })
+
   describe('total', () => {
     it('should calculate correct total for default customers',() => {
       //default customer don't have pricing rules
@@ -67,8 +82,25 @@ describe('/services/checkout', () => {
         checkout.add('premium')
         checkout.add('premium')
         checkout.add('classic')
+        checkout.add('classic')
+        checkout.add('classic')
 
-        expect(checkout.total()).toEqual(2987.91)
+        expect(checkout.total()).toEqual(3467.89)
+      })
+
+      it('should calculate correct total for JORA', () => {
+        const joraPricingRule = getCustomerPricingRule('REC006')
+
+        const checkout = new Checkout(joraPricingRule)
+
+        checkout.add('premium')
+        checkout.add('premium')
+        checkout.add('premium')
+        checkout.add('premium')
+        checkout.add('standout')
+        checkout.add('classic')
+
+        expect(checkout.total()).toEqual(2112.94)
       })
     })
   })
